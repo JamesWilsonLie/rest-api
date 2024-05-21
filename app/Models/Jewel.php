@@ -6,7 +6,22 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\User;
+use OpenApi\Annotations as OA;
 
+/** 
+ * Class Jewel.
+ * 
+ * @author JamesWL <james.422023009@civitas.ukrida.ac.id>
+ * 
+ * @OA\Schema(
+ *     description="Jewel model",
+ *     title="Jewel model",
+ *     required={"name", "type"},
+ *     @OA\Xml(
+ *         name="Jewel"
+ *     )
+ * )
+ */
 class Jewel extends Model
 {
     // use HasFactory;
