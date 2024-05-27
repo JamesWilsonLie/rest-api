@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: May 21, 2024 at 05:46 PM
+-- Generation Time: May 27, 2024 at 12:13 PM
 -- Server version: 8.2.0
 -- PHP Version: 8.2.13
 
@@ -155,7 +155,7 @@ CREATE TABLE IF NOT EXISTS `migrations` (
   `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `migrations`
@@ -166,7 +166,139 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (2, '0001_01_01_000001_create_cache_table', 1),
 (3, '0001_01_01_000002_create_jobs_table', 1),
 (4, '2024_05_21_101214_create_jewels_table', 2),
-(5, '2024_05_21_111922_create_personal_access_tokens_table', 3);
+(5, '2024_05_21_111922_create_personal_access_tokens_table', 3),
+(6, '2024_05_27_105601_create_oauth_auth_codes_table', 4),
+(7, '2024_05_27_105602_create_oauth_access_tokens_table', 4),
+(8, '2024_05_27_105603_create_oauth_refresh_tokens_table', 4),
+(9, '2024_05_27_105604_create_oauth_clients_table', 4),
+(10, '2024_05_27_105605_create_oauth_personal_access_clients_table', 4);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `oauth_access_tokens`
+--
+
+DROP TABLE IF EXISTS `oauth_access_tokens`;
+CREATE TABLE IF NOT EXISTS `oauth_access_tokens` (
+  `id` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user_id` bigint UNSIGNED DEFAULT NULL,
+  `client_id` bigint UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `scopes` text COLLATE utf8mb4_unicode_ci,
+  `revoked` tinyint(1) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `expires_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `oauth_access_tokens_user_id_index` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `oauth_access_tokens`
+--
+
+INSERT INTO `oauth_access_tokens` (`id`, `user_id`, `client_id`, `name`, `scopes`, `revoked`, `created_at`, `updated_at`, `expires_at`) VALUES
+('293e7cc83a5128ec0ea47d3a3d4592bb87b89ab827cd3ca6872228f5ba86a3e9687d9c0f0ff0c729', 2, 1, 'All Yours', '[]', 0, '2024-05-27 05:07:23', '2024-05-27 05:07:23', '2024-11-27 12:07:23'),
+('4f81f65a0d8f923157e092f245c53a4923717af2878f189abadc0f379da6a8e1092863b8cd4741c0', 1, 1, 'All Yours', '[]', 1, '2024-05-27 04:33:49', '2024-05-27 04:35:03', '2024-11-27 11:33:49'),
+('56f3714bd327efcf39280175b671be47bea4ce24a538d99549fedd13fd4c27c2f2a771ee779b9c1d', 1, 1, 'All Yours', '[]', 1, '2024-05-27 04:37:47', '2024-05-27 04:38:01', '2024-11-27 11:37:47'),
+('604295df94a38089194d6737c6652c837cf36624b1fb81b7fd404bf56f84f630f4faa6855d234c0f', 1, 1, 'All Yours', '[]', 0, '2024-05-27 05:12:27', '2024-05-27 05:12:27', '2024-11-27 12:12:27'),
+('713fd088dee682828846f86853b771532f3e800edd41df83dce639ac7975ec948af68aeeedc72c14', 1, 1, 'All Yours', '[]', 1, '2024-05-27 05:11:58', '2024-05-27 05:12:20', '2024-11-27 12:11:58'),
+('81b615e72bc951dce55047995ae35a425fed980e3a2ee8dd96f9f97c71190098354c8df737eeb7bd', 1, 1, 'All Yours', '[]', 0, '2024-05-27 05:12:26', '2024-05-27 05:12:26', '2024-11-27 12:12:26'),
+('87259465b9a7017bca0ec734b2ddfe6c67152ea6aca0be9c2aad1b319a9a8134db2d43771610567b', 1, 1, 'All Yours', '[]', 0, '2024-05-27 05:06:07', '2024-05-27 05:06:08', '2024-11-27 12:06:07'),
+('98f2bc2ac6b780ca54038cc4148b4f86d01c8bf3f403b7b55f530fe8c94e5804ec83f66ee3d1dd94', 1, 1, 'All Yours', '[]', 1, '2024-05-27 05:09:34', '2024-05-27 05:11:19', '2024-11-27 12:09:34'),
+('a3c035f6f20629a05192a6fcf17868deb0292151dfd49d58115cc07384a3f759de6ee52841b17ef8', 1, 1, 'All Yours', '[]', 0, '2024-05-27 04:23:45', '2024-05-27 04:23:45', '2024-11-27 11:23:45'),
+('aefc8822c26da4bb741722feb739545c19a16be49b13c31075770a6c3720502a743875ac30f8a129', 1, 1, 'All Yours', '[]', 0, '2024-05-27 04:26:24', '2024-05-27 04:26:24', '2024-11-27 11:26:24'),
+('cbf2a92e3cf9b9914af2783127afa35d2e5923721c7bd5dc744487412fd3ad9d8fce23dbea4ca1b2', 1, 1, 'All Yours', '[]', 0, '2024-05-27 04:38:34', '2024-05-27 04:38:34', '2024-11-27 11:38:34'),
+('e3d2b2a9bab73191656d2fc0047bc729635d3defe705c38baeb622ba94d2ad8247b4b5e4a392dc56', 1, 1, 'All Yours', '[]', 0, '2024-05-27 04:35:57', '2024-05-27 04:35:57', '2024-11-27 11:35:57'),
+('e68dc410c5d8726eab928cb667d7d152a8ca4e149af6b28a5c53b7d0381ec8f30022faef5789f290', 1, 1, 'All Yours', '[]', 0, '2024-05-27 04:44:56', '2024-05-27 04:44:56', '2024-11-27 11:44:56');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `oauth_auth_codes`
+--
+
+DROP TABLE IF EXISTS `oauth_auth_codes`;
+CREATE TABLE IF NOT EXISTS `oauth_auth_codes` (
+  `id` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user_id` bigint UNSIGNED NOT NULL,
+  `client_id` bigint UNSIGNED NOT NULL,
+  `scopes` text COLLATE utf8mb4_unicode_ci,
+  `revoked` tinyint(1) NOT NULL,
+  `expires_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `oauth_auth_codes_user_id_index` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `oauth_clients`
+--
+
+DROP TABLE IF EXISTS `oauth_clients`;
+CREATE TABLE IF NOT EXISTS `oauth_clients` (
+  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
+  `user_id` bigint UNSIGNED DEFAULT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `secret` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `provider` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `redirect` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `personal_access_client` tinyint(1) NOT NULL,
+  `password_client` tinyint(1) NOT NULL,
+  `revoked` tinyint(1) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `oauth_clients_user_id_index` (`user_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `oauth_clients`
+--
+
+INSERT INTO `oauth_clients` (`id`, `user_id`, `name`, `secret`, `provider`, `redirect`, `personal_access_client`, `password_client`, `revoked`, `created_at`, `updated_at`) VALUES
+(1, NULL, 'Laravel Personal Access Client', 'a8bmvQh4TQUEpP1bp3AyMa8TNMnCyeRbS55FMD4P', NULL, 'http://localhost', 1, 0, 0, '2024-05-27 03:56:12', '2024-05-27 03:56:12'),
+(2, NULL, 'Laravel Password Grant Client', 'yyPx5L1q3P7bOXbLkzEAVGpkMYjgbp9MFUk01vQ9', 'users', 'http://localhost', 0, 1, 0, '2024-05-27 03:56:12', '2024-05-27 03:56:12');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `oauth_personal_access_clients`
+--
+
+DROP TABLE IF EXISTS `oauth_personal_access_clients`;
+CREATE TABLE IF NOT EXISTS `oauth_personal_access_clients` (
+  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
+  `client_id` bigint UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `oauth_personal_access_clients`
+--
+
+INSERT INTO `oauth_personal_access_clients` (`id`, `client_id`, `created_at`, `updated_at`) VALUES
+(1, 1, '2024-05-27 03:56:12', '2024-05-27 03:56:12');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `oauth_refresh_tokens`
+--
+
+DROP TABLE IF EXISTS `oauth_refresh_tokens`;
+CREATE TABLE IF NOT EXISTS `oauth_refresh_tokens` (
+  `id` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `access_token_id` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `revoked` tinyint(1) NOT NULL,
+  `expires_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `oauth_refresh_tokens_access_token_id_index` (`access_token_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -229,7 +361,8 @@ CREATE TABLE IF NOT EXISTS `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('a6Y1SD1q5U2rithmQExvsne10uTPDI9B5pHBUV63', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiaWEyb3llVmdxR1ZCdEtDc1RKOTN0MDJSQThWTmNhdW9MZHhaRTZ1VCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MjE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMCI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1716290750);
+('a6Y1SD1q5U2rithmQExvsne10uTPDI9B5pHBUV63', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiaWEyb3llVmdxR1ZCdEtDc1RKOTN0MDJSQThWTmNhdW9MZHhaRTZ1VCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MjE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMCI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1716290750),
+('YpxmGVLA4xsVWReoOGwNz4lF4jWp7B8Cn7uIJ8Vp', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoidTMyR3pxUkE1VEI0T3NtV2RXWkgwUndPZGJuMWhmeTBPMmFYSnduYSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MjE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMCI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1716807249);
 
 -- --------------------------------------------------------
 
@@ -249,7 +382,14 @@ CREATE TABLE IF NOT EXISTS `users` (
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `users_email_unique` (`email`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'James Wilson Lie', 'james@gmail.com', NULL, '$2y$12$ToL1MV57QR1PMIHXO98GLeBm0GV.GARYlJAl0ugCHcqlrXQ4AOa1i', NULL, '2024-05-27 05:07:23', '2024-05-27 05:07:23');
 
 --
 -- Constraints for dumped tables
