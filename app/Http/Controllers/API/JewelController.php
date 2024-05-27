@@ -18,8 +18,8 @@ class JewelController extends Controller
 {
     /**
      * @OA\Get(
-     *     path="/api/jewels",
-     *     tags={"jewel"},
+     *     path="/api/jewel",
+     *     tags={"Jewel"},
      *     summary="Display a listing of items",
      *     operationId="index",
      *     @OA\Response(
@@ -36,8 +36,8 @@ class JewelController extends Controller
 
     /**
      * @OA\Post(
-     *     path="/api/jewels",
-     *     tags={"jewel"},
+     *     path="/api/jewel",
+     *     tags={"Jewel"},
      *     summary="Store a newly created item",
      *     operationId="store",
      *     @OA\Response(
@@ -63,7 +63,8 @@ class JewelController extends Controller
      *                      "image": "https://images.tokopedia.net/img/cache/900/hDjmkQ/2024/4/7/6328cc0b-3846-46b7-b8ef-1d0e8dcb0353.jpg"
      *                     }
      *         ),
-     *     )
+     *     ),
+     *     security={{"passport_token_ready":{},"passport":{}}}
      * )
      */
     public function store(Request $request)
@@ -87,8 +88,8 @@ class JewelController extends Controller
 
     /**
      * @OA\Get(
-     *     path="/api/jewels/{id}",
-     *     tags={"jewel"},
+     *     path="/api/jewel/{id}",
+     *     tags={"Jewel"},
      *     summary="Display the specified item",
      *     operationId="show",
      *     @OA\Response(
@@ -129,8 +130,8 @@ class JewelController extends Controller
     
     /**
      * @OA\Put(
-     *      path="/api/jewels/{id}",
-     *      tags={"jewel"},
+     *      path="/api/jewel/{id}",
+     *      tags={"Jewel"},
      *      summary="Update the specified item",
      *      operationId="update",
      *      @OA\Response(
@@ -171,7 +172,8 @@ class JewelController extends Controller
      *                       "image": "https://media.istockphoto.com/id/815613222/id/foto/cincin-emas.jpg?s=612x612&w=0&k=20&c=BXgN2blpaxcH0b7U21JgeglhImoO1y5Ohd1XiWQmD_U=",
      *                      }
      *          ),
-     *      )
+     *      ),
+     *     security={{"passport_token_ready":{},"passport":{}}}
      * )
      */
     public function update(Request $request, string $id)
@@ -199,8 +201,8 @@ class JewelController extends Controller
 
     /**
      * @OA\Delete(
-     *      path="/api/jewels/{id}",
-     *      tags={"jewel"},
+     *      path="/api/jewel/{id}",
+     *      tags={"Jewel"},
      *      summary="Remove the specified item",
      *      operationId="destroy",
      *      @OA\Response(
@@ -228,6 +230,7 @@ class JewelController extends Controller
      *              format="int64"
      *          )
      *      ),
+     *     security={{"passport_token_ready":{},"passport":{}}}
      * )
      */
     public function destroy(string $id)
