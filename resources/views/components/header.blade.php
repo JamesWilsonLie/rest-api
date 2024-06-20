@@ -46,14 +46,14 @@
                         <div class="header-right-items d-none d-md-block">
                             <a href="#wishlist" class="header-cart">
                                 <i class="icon-heart"></i>
-                                <span class="item-counter">3</span>
+                                <span class="item-counter">0</span>
                             </a>
                         </div>
 
                         <div class="header-right-items">
-                            <a href="#minicart" class="header-cart">
+                            <a href="{{route('cart')}}" class="header-cart">
                                 <i class="icon-bag2"></i>
-                                <span class="item-counter">3</span>
+                                <span class="item-counter">{{ $_COOKIE['cartItemCount']?? 0 }}</span>
                             </a>
                         </div>
                         

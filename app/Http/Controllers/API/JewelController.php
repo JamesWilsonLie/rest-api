@@ -68,6 +68,15 @@ class JewelController extends Controller
      *         )
      *     ),
      *     @OA\Parameter(
+     *         name="_price",
+     *         in="query",
+     *         description="search by price like under $1k, $1-5k, etc",
+     *         required=false,
+     *         @OA\Schema(
+     *             type="integer",
+     *         )
+     *     ),
+     *     @OA\Parameter(
      *         name="_sort_by",
      *         in="query",
      *         description="word to search",
@@ -94,25 +103,44 @@ class JewelController extends Controller
             if($request->get('_type')){
                 $data['products'] = $data['products']->whereRaw('LOWER(type) = "'.strtolower($request->get('_type')).'"');
             }
-            if($request->get('_sort_by')){
-            switch ($request->get('_sort_by')) {
-                default:
-                case 'latest_added':
-                $data['products'] = $data['products']->orderBy('created_at','DESC');
-                break;
-                case 'name_asc':
-                $data['products'] = $data['products']->orderBy('name','ASC');
-                break;
-                case 'name_desc':
-                $data['products'] = $data['products']->orderBy('name','DESC');
-                break;
-                case 'price_asc':
-                $data['products'] = $data['products']->orderBy('price','ASC');
-                break;
-                case 'price_desc':
-                $data['products'] = $data['products']->orderBy('price','DESC');
-                break;
+            if ($request->has('_price')) {
+                $priceRange = $request->input('_price');
+                switch ($priceRange) {
+                    case 'under_1k':
+                    $data['products'] = $data['products']->where('price', '<', 1000);
+                    break;
+                    case '1_5k':
+                    $data['products'] = $data['products']->whereBetween('price', [1000, 5000]);
+                    break;
+                    case '5_10k':
+                    $data['products'] = $data['products']->whereBetween('price', [5000, 10000]);
+                    break;
+                    case 'above_10k':
+                    $data['products'] = $data['products']->where('price', '>', 10000);
+                    break;
+                    default:
+                    break;
+                }
             }
+            if($request->get('_sort_by')){
+                switch ($request->get('_sort_by')) {
+                    default:
+                    case 'latest_added':
+                    $data['products'] = $data['products']->orderBy('created_at','DESC');
+                    break;
+                    case 'name_asc':
+                    $data['products'] = $data['products']->orderBy('name','ASC');
+                    break;
+                    case 'name_desc':
+                    $data['products'] = $data['products']->orderBy('name','DESC');
+                    break;
+                    case 'price_asc':
+                    $data['products'] = $data['products']->orderBy('price','ASC');
+                    break;
+                    case 'price_desc':
+                    $data['products'] = $data['products']->orderBy('price','DESC');
+                    break;
+                }
             }
             $data['products_count_total']   = $data['products']->count();
             $data['products']               = ($limit==0 && $offset==0)?$data['products']:$data['products']->limit($limit)->offset($offset);

@@ -192,6 +192,15 @@
                         }
                     },
                     {
+                        "name": "_price",
+                        "in": "query",
+                        "description": "search by price like under $1k, $1-5k, etc",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
                         "name": "_sort_by",
                         "in": "query",
                         "description": "word to search",

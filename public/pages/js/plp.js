@@ -5,6 +5,7 @@ function getDataOnEnter(event){
         getData(1);
     }
 }
+
 function getData(toPage=1){
     let url = baseUrl+'/api/jewel';
     if(toPage){
@@ -19,7 +20,7 @@ function getData(toPage=1){
     });
     
     axios.get(url,{params:payload},apiHeaders)
-    .then(function (response) {
+   .then(function (response) {
         console.log('[DATA] response..',response.data);
         let template = ``;
         // START-- products
@@ -28,11 +29,15 @@ function getData(toPage=1){
                                     <div class="single-product-item text-center">
                                         <div class="products-images">
                                             <a href="/jewel/`+item.id+`" class="product-thumbnail">
-                                                <img src="`+item.image+`" alt="Product Images" height="300">
+                                                <img src="`+item.image+`.png" alt="Product Images" height="300">
                                             </a>
                                             <div class="product-actions">
-                                                <a href="/jewel/`+item.id+`"><i class="p-icon icon-plus"></i><span class="tool-tip">Quick View</span></a>
-                                                <a href="#"><i class="p-icon icon-bag2"></i> <span class="tool-tip">Add to cart</span></a>
+                                                <a href="/jewel/${item.id}"><i class="p-icon icon-plus"></i><span class="tool-tip">Quick View</span></a>
+                                                ${getCookie('ut')? 
+                                                    `<a href="#" onclick="addToCart({ id: '${item.id}', name: '${item.name}', type: '${item.type}', carat: '${item.carat}', price: '${item.price}', image: '${item.image}' })"><i class="p-icon icon-bag2"></i> <span class="tool-tip">Add to cart</span></a>`
+                                                    : 
+                                                    `<a href="#" data-bs-toggle="modal" data-bs-target="#authModal"><i class="p-icon icon-bag2"></i> <span class="tool-tip">Add to cart</span></a>`
+                                                }
                                             </div>
                                         </div>
                                         <div class="product-content">

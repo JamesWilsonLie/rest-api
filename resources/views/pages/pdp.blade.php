@@ -21,22 +21,22 @@
                             </div>
                             <div class="easyzoom-style">
                                 <div class="easyzoom easyzoom--overlay">
-                                    <a href="{{asset('assets/images/product/single-product-02.webp')}}" class="poppu-img">
-                                        <img src="{{asset('assets/images/product/single-product-03.webp')}}" class="img-fluid" alt="">
+                                    <a href="{{asset('assets/images/product/single-product-02.webp')}}" class="poppu-img product-img-main-href-2">
+                                        <img src="{{asset('assets/images/product/single-product-03.webp')}}" class="img-fluid product-img-main-src-2" alt="">
                                     </a>
                                 </div>
                             </div>
                             <div class="easyzoom-style">
                                 <div class="easyzoom easyzoom--overlay">
-                                    <a href="{{asset('assets/images/product/single-product-03.webp')}}" class="poppu-img">
-                                        <img src="{{asset('assets/images/product/single-product-03.webp')}}" class="img-fluid" alt="">
+                                    <a href="{{asset('assets/images/product/single-product-03.webp')}}" class="poppu-img product-img-main-href-3">
+                                        <img src="{{asset('assets/images/product/single-product-03.webp')}}" class="img-fluid product-img-main-src-3" alt="">
                                     </a>
                                 </div>
                             </div>
                             <div class="easyzoom-style">
                                 <div class="easyzoom easyzoom--overlay">
-                                    <a href="{{asset('assets/images/product/single-product-04.webp')}}" class="poppu-img">
-                                        <img src="{{asset('assets/images/product/single-product-04.webp')}}" class="img-fluid" alt="">
+                                    <a href="{{asset('assets/images/product/single-product-04.webp')}}" class="poppu-img product-img-main-href-4">
+                                        <img src="{{asset('assets/images/product/single-product-04.webp')}}" class="img-fluid product-img-main-src-4" alt="">
                                     </a>
                                 </div>
                             </div>
@@ -44,9 +44,9 @@
                         </div>
                         <div class="product-details-thumbs-2 slider-thumbs-2">
                             <div class="sm-image"><img src="{{asset('assets/images/product/small/1-100x100.webp')}}" alt="product image thumb" class="product-img-main-src"></div>
-                            <div class="sm-image"><img src="{{asset('assets/images/product/small/2-100x100.webp')}}" alt="product image thumb"></div>
-                            <div class="sm-image"><img src="{{asset('assets/images/product/small/3-100x100.webp')}}" alt="product image thumb"></div>
-                            <div class="sm-image"><img src="{{asset('assets/images/product/small/4-100x100.webp')}}" alt="product image thumb"></div>
+                            <div class="sm-image"><img src="{{asset('assets/images/product/small/2-100x100.webp')}}" alt="product image thumb" class="product-img-main-src-2"></div>
+                            <div class="sm-image"><img src="{{asset('assets/images/product/small/3-100x100.webp')}}" alt="product image thumb" class="product-img-main-src-3"></div>
+                            <div class="sm-image"><img src="{{asset('assets/images/product/small/4-100x100.webp')}}" alt="product image thumb" class="product-img-main-src-4"></div>
                         </div>
                     </div>
                     <!--// Product Details Left -->
@@ -72,7 +72,7 @@
                             <div class="quickview-cart-box">
                                 <div class="quickview-quality product-add-to-cart">
                                     <div class="cart-plus-minus">
-                                        <input class="cart-plus-minus-box" type="text" name="qtybutton" value="0">
+                                        <input class="cart-plus-minus-box" type="text" name="qtybutton" value="1" id="quantity">
                                     </div>
                                 </div>
                                 <div class="text-color-primary product-add-to-cart-is-disabled" style="display:none;font-size:10px">
@@ -80,7 +80,7 @@
                                 </div>
                                 <div class="quickview-button">
                                     <div class="quickview-cart button product-add-to-cart">
-                                        <button type="button" class="btn--lg btn--black font-weight--reguler text-white">
+                                        <button type="button" class="btn--lg btn--black font-weight--reguler text-white" id="add-to-cart" onclick="">
                                             Add to cart
                                         </button>
                                     </div>

@@ -7,6 +7,10 @@ Route::get('/', function () {
     return view('pages.home');
 })->name('home');
 
+Route::get('/cart', function () {
+    return view('pages.cart');
+})->name('cart');
+
 Route::get('/jewel', function () {
     return view('pages.plp');
 })->name('plp');

@@ -40,10 +40,13 @@
                         <div class="product-filter widget-price">
                             <h6 class="mb-20">Price</h6>
                             <ul class="widget-nav-list">
-                                <li><a href="#">Under $ 1K</a></li>
-                                <li><a href="#">$ 1-5K</a></li>
-                                <li><a href="#">$ 5-10K</a></li>
-                                <li><a href="#">Above $ 10K</a></li>
+                                <select class="_filter " id="" name="_price" onchange="getData()">
+                                    <option href="#" value="all_price" selected>All price</option>
+                                    <option href="#" value="under_1k">Under $ 1K</option>
+                                    <option href="#" value="1_5k">$ 1-5K</option>
+                                    <option href="#" value="5_10k">$ 5-10K</option>
+                                    <option href="#" value="above_10k">Above $ 10K</option>
+                                </select>
                             </ul>
                         </div>
                     </div>
@@ -95,7 +98,7 @@
                                 <div class="header-search-box">
                                     <input  class="_filter search-field" name="_search" type="text" 
                                             onkeypress="getDataOnEnter(event)"
-                                            placeholder="Search by title or author...">
+                                            placeholder="Search by name product...">
                                     <button class="search-icon"><i class="icon-magnifier"></i></button>
                                 </div>
                             </div>
@@ -110,7 +113,6 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
 

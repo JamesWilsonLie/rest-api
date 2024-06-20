@@ -53,6 +53,7 @@
         <script src="{{asset('assets/js/main.js')}}"></script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script src="{{asset('pages/js/app.js')}}"></script>
+        <script src="{{asset('pages/js/cart.js')}}"></script>
         @yield('addition_script')
     </body>
 </html>

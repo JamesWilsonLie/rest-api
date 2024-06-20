@@ -8,12 +8,27 @@ function getDataByWindowUrlKey(){
       console.log('[DATA] response..',response.data);
       let template = '';
 
-      $('.product-img-main-href').attr('href',response.data.image);
-      $('.product-img-main-src').attr('src',response.data.image);
+      $('.product-img-main-href').attr('href',"../"+response.data.image+".png");
+      $('.product-img-main-src').attr('src',"../"+response.data.image+".png");
+      $('.product-img-main-href-2').attr('href',"../"+response.data.image+"2.png");
+      $('.product-img-main-src-2').attr('src',"../"+response.data.image+"2.png");
+      $('.product-img-main-href-3').attr('href',"../"+response.data.image+"3.png");
+      $('.product-img-main-src-3').attr('src',"../"+response.data.image+"3.png");
+      $('.product-img-main-href-4').attr('href',"../"+response.data.image+"4.png");
+      $('.product-img-main-src-4').attr('src',"../"+response.data.image+"4.png");
       $('#product-name').html(response.data.name);
       $('#product-type').html(response.data.type);
       $('#product-price').html('$ '+parseFloat(response.data.price).toLocaleString());
       $('#product-description').html(response.data.description);
+      $('#add-to-cart').attr('onclick', `addToCart({ 
+        id: '${response.data.id}', 
+        name: '${response.data.name}', 
+        type: '${response.data.type}', 
+        carat: '${response.data.carat}', 
+        price: '${response.data.price}', 
+        image: '${response.data.image}', 
+        quantity: $('#quantity').val() 
+      })`);
 
       // START -- note, unless you have these data in a database structure, here we are hardcoding them for display purposes
         // review
